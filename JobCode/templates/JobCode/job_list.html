@@ -1,0 +1,46 @@
+{% extends "JobCode/base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-2 col-md-2">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-light"><a href="{% url 'job-list' %}">Job Code Management</a></li>
+      <li class="list-group-item list-group-item-light"><a href="{% url 'machine-list' %}">Machine Management</a></li>
+      <li class="list-group-item list-group-item-light"><a href="#">Time Card approval</a></li>
+    </ul>
+  </div>
+  <div class="col-lg-10 col-md-10">
+
+    <table class="table  table-bordered table-hover">
+          <thead class="">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Job Code</th>
+              <th scope="col">Description</th>
+              <th scope="col">Hourly Rate</th>
+              <th scope="col">Max Hour Per Day</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for job in job_list%}
+            <tr>
+              <th scope="row"></th>
+              <td>{{ job.job_code }}</td>
+              <td>{{ job.description }}</td>
+              <td>{{ job.hourly_rate }}</td>
+              <td>{{ job.max_hour_per_day }}</td>
+              <td><a href="#">edit</a></td>
+              <td><a href="#">delete</a></td>
+
+            </tr>
+            {% endfor %}
+
+          </tbody>
+      </table>
+
+  </div>
+
+</div>
+
+{% endblock %}
