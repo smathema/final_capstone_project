@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.HomePage.as_view(), name="home"),
     path('jobcode/', include('JobCode.urls')),
     path('machinemgt/', include('MachineMgt.urls')),
+    path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='JobCode/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='JobCode/logout.html'), name='logout'),
 
