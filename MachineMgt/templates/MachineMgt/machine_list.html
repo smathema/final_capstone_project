@@ -9,6 +9,9 @@
     </ul>
   </div>
   <div class="col-lg-10 col-md-10">
+    <div class="text-right">
+      <h3><a href="{% url 'machine-create'  %}"> Add New</a></h3>
+    </div>
 
     <table class="table  table-bordered table-hover">
           <thead class="">
@@ -30,8 +33,8 @@
               <td>{{ machine.description }}</td>
               <td>{{ machine.hourly_rent }}</td>
               <td>{{ machine.max_hour_per_day }}</td>
-              <td><a href="#">edit</a></td>
-              <td><a href="#">delete</a></td>
+              <td><a href="{% url 'machine-update' machine.id %}">edit</a></td>
+              <td><a href="{% url 'machine-delete' machine.id %}">delete</a></td>
             </tr>
             {% endfor %}
 
