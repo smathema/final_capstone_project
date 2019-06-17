@@ -4,7 +4,6 @@ from .views import MachineListView, MachineDetailView, MachineCreateView, Machin
 
 urlpatterns = [
     path('', MachineListView.as_view(), name='machine-list'),
-    path('machinemgt/<int:pk>/', MachineDetailView.as_view() , name='machine-detail'),
     path('machinemgt/new/', MachineCreateView.as_view() , name='machine-create'),
     path('machinemgt/<int:pk>/update/', MachineUpdateView.as_view(), name='machine-update'),
     path('machinemgt/<int:pk>/delete/', MachineDeleteView.as_view(), name='machine-delete'),

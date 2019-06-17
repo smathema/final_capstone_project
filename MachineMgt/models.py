@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Machine(models.Model):
-	machine_code = models.CharField(max_length=250, unique=True)
+	machine_code = models.CharField(max_length=20, unique=True)
 	description = models.TextField(blank=True)
 	hourly_rent = models.DecimalField(max_digits=10, decimal_places=2)
 	max_hour_per_day = models.IntegerField()

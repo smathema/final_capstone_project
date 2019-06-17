@@ -1,6 +1,8 @@
 {% extends "JobCode/index.html" %}
 
 {% block content %}
+{% if user.is_authenticated and user.is_staff %}
+
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
@@ -15,4 +17,6 @@
         </form>
 
     </div>
+
+{% endif %}
 {% endblock content %}

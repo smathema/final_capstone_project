@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'crispy_forms',
 
     'JobCode',
@@ -57,7 +58,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'disaster_recovery.urls'
 
-#CRISPY_TEMPLATE_PACK = 'uni_form'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -83,8 +84,12 @@ WSGI_APPLICATION = 'disaster_recovery.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'employee',
+        'USER': 'root',
+        'PASSWORD': 'tiger',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
@@ -128,4 +133,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'job-list'
+LOGIN_REDIRECT_URL = '/'

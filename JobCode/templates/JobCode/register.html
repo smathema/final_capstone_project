@@ -1,23 +1,35 @@
 {% extends "JobCode/index.html" %}
+{% load crispy_forms_tags %}
 
+{% block title %}
+Registration Page
+{% endblock %}
+
+<!-- Register content page -->
 {% block content %}
-
 <div class="container">
+
     <div class="row ">
-      <div class=col>
-        <div class="container">
-            <form method="POST">
-                {% csrf_token %}
+        <div class=col>
+            <div class="container justify-content-center">
+                <form method="POST">
+                    {% csrf_token %}
 
-                <h2>Sign Up</h2>
-                    {{ form.as_p }}
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Sign Up</button>
-                </div>
-            </form>
+                    <h2>Sign Up</h2>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{ form|crispy }}
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                    </div>
+                </form>
+
+            </div>
         </div>
-      </div>
-  </div>
-  </div>
-  {% endblock content %}
+    </div>
+
+</div>
+{% endblock content %}

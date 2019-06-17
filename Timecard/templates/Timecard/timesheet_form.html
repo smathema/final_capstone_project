@@ -1,0 +1,349 @@
+{% extends "JobCode/index.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Create Timesheet
+{% endblock %}
+
+<!-- Timesheet create form content page -->
+{% block content %}
+
+<!-- Labor Wrapper with remove functionality-->
+<!--<div class="input_fields_wrap_remove m-4 d-none">-->
+
+<!--    <div class="row">-->
+
+<!--        &lt;!&ndash; Labor code drop-down &ndash;&gt;-->
+<!--        <div class="col-sm-3">-->
+<!--            <label>Labor Code:</label>-->
+<!--            <select name="dropdown1" id="select1" onchange="changeLabel1()">-->
+<!--                <option disabled selected value> &#45;&#45; select an option &#45;&#45; </option>-->
+<!--                {% for site in job %}-->
+<!--                <option value="{{site.1}}">{{ site.0 }}</option>-->
+<!--                {% endfor %}-->
+<!--            </select>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Labor hours worked &ndash;&gt;-->
+<!--        <div class="col-sm-3">-->
+<!--            <label>Hrs.Worked:</label>-->
+<!--            <input type="number" name="mytext1" id="textEmp1" onkeyup="changeLabel1()" required  value="0"/>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Labor total amount &ndash;&gt;-->
+<!--        <div class="col-sm-2">-->
+<!--            <label>Total:</label>-->
+<!--            <label id="lblEmp1">N/A</label>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Remove link &ndash;&gt;-->
+<!--        <div class="col-sm-2">-->
+<!--            <a href="#" class="remove_field">Remove</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!-- Machine Wrapper with remove functionality -->
+<!--<div class="input_fields_wrap2_remove m-4 d-none">-->
+
+<!--    <div class="row">-->
+
+<!--        &lt;!&ndash; Machine code drop-down &ndash;&gt;-->
+<!--        <div class="col-sm-3">-->
+<!--            <label>Machine Code:</label>-->
+
+<!--            <select name="dropdown2" id='select2' onchange="changeLabel2()">-->
+<!--                <option disabled selected value> &#45;&#45; select an option &#45;&#45; </option>-->
+<!--                {% for site in machine %}-->
+<!--                <option value="{{ site.1 }}">-->
+<!--                    {{ site.0 }}-->
+<!--                </option>-->
+<!--                {% endfor %}-->
+<!--            </select>-->
+
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Machine hours used &ndash;&gt;-->
+<!--        <div class="col-sm-3">-->
+<!--            <label>Hrs.Used:</label>-->
+<!--            <input type="number" name="mytext1" id="textEmp2" onkeyup="changeLabel2()" required value="0"/>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Machine total rent &ndash;&gt;-->
+<!--        <div class="col-sm-2">-->
+<!--            <label>Total:</label>-->
+<!--            <label id="lblEmp2">N/A</label>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Remove link &ndash;&gt;-->
+<!--        <div class="col-sm-2">-->
+<!--            <a href="#" class="remove_field">Remove</a>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</div>-->
+
+<div class="content-section">
+
+    <!-- Form -->
+    <form method="POST" action="time">
+        {% csrf_token %}
+
+        <!-- Header area -->
+        <div>
+            <div class="p-3 mb-2 mt-3 bg-secondary text-white">Timesheet Submission</div>
+        </div>
+
+        <!-- Form -->
+        <div class="p-3 mb-2 mt-3">
+
+            <!-- Site and Contractor Entry -->
+            <div class="row mb-2">
+                <div class="col-sm-2">
+                    <label>Site Code:</label>
+                    {{form.site_code}}
+                </div>
+                <div class="col-sm-2">
+                    <label>Contractor Name:</label>
+                    {{form.contractor}}
+                </div>
+                <div class="col-sm-2">
+                    <label>Date:</label>
+                    {{form.date}}
+                </div>
+            </div>
+
+            <!-- Labor Entry -->
+            <div class="row mb-2">
+
+                <!-- Labor Card Header -->
+                <div class="card col-sm-12">
+                    Labor Entry
+                </div>
+
+                <!-- Card -->
+                <div class="card col-sm-12">
+
+                    <!-- Card Body -->
+                    <div class="card-body">
+
+                        <!-- Labor Wrapper -->
+                        <div class="input_fields_wrap m-4">
+
+                            <div class="row">
+
+                                <!-- Labor code drop-down -->
+                                <div class="col-sm-3">
+                                    <label>Labor Code:</label>
+                                    <select name="dropdown1" id="select11" onchange="changeLabel1()">
+                                        <option disabled selected value> -- select an option -- </option>
+                                        {% for site in job %}
+                                            <option value="{{site.1}}">{{ site.0 }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <!-- Labor hours worked -->
+                                <div class="col-sm-3">
+                                    <label>Hrs.Worked:</label>
+                                    <input type="number" name="mytext1" id="textEmp11" onkeyup="changeLabel1()" required value="0"/>
+                                </div>
+
+                                <!-- Labor total amount -->
+                                <div class="col-sm-2">
+                                    <label>Total:</label>
+                                    <label id="lblEmp11">N/A</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Add more Labor wrapper -->
+                        <button class="add_field_button btn btn-primary">Add More Fields</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Machine Entry -->
+            <div class="row mb-4">
+
+                <!-- Card Header -->
+                <div class="card col-sm-12">
+                    Machine Entry
+                </div>
+
+                <!-- Card -->
+                <div class="card col-sm-12">
+
+                    <!-- Card Body -->
+                    <div class="card-body">
+
+                        <!-- Machine Wrapper -->
+                        <div class="input_fields_wrap2 m-4">
+
+                            <div class="row">
+
+                                <!-- Machine code drop-down -->
+                                <div class="col-sm-3">
+                                    <label>Machine Code:</label>
+
+                                    <select name="dropdown2" id='select21' onchange="changeLabel2()">
+                                        <option disabled selected value> -- select an option -- </option>
+                                        {% for site in machine %}
+                                            <option value="{{ site.1}}">
+                                            {{ site.0 }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <!-- Machine hours used -->
+                                <div class="col-sm-3">
+                                    <label>Hrs.Used:</label>
+                                    <input type="number" name="mytext1" id="textEmp21" onkeyup="changeLabel2()" required value="0"/>
+                                </div>
+
+                                <!-- Machine total rent -->
+                                <div class="col-sm-2">
+                                    <label>Total:</label>
+                                    <label id="lblEmp21">N/A</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <!-- Add more Machine wrapper -->
+                        <button class="add_field_button2 btn btn-primary">Add More Fields</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit and Clear Buttons -->
+            <div class="row float-right">
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="reset">Clear</button>
+                    <button class="btn btn-outline-info" type="submit">Submit</button>
+
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+
+</div>
+
+<script type="text/javascript">
+var cont1 = 1;
+var cont2 = 1;
+    $(document).ready(function () {
+        var max_fields = 10; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+        var html = $(".input_fields_wrap_remove").html(); //Fields wrapper
+
+        var x = 1; //initlal text box count
+        $(add_button).click(function (e) { //on add input button click
+            e.preventDefault();
+
+            if (x < max_fields) { //max input box allowed
+                x++; //text box increment
+
+                $(wrapper).append('<div class="row"><div class="col-sm-3"><label>Labor Code:</label><select name="dropdown1" id="select1" onchange="changeLabel1()"><option disabled selected value> -- select an option -- </option>{% for site in job %}<option value="{{site.1}}">{{ site.0 }}</option>{% endfor %}</select></div><div class="col-sm-3"><label>Hrs.Worked:</label><input type="number" name="mytext1" id="textEmp1" onkeyup="changeLabel1()" required  value="0"/></div><div class="col-sm-2"><label>Total:</label><label id="lblEmp1">N/A</label></div><div class="col-sm-2"><a href="#" class="remove_field">Remove</a></div></div>');
+            }
+            cont1++
+
+            var idselect = 'select1' + cont1;
+            document.getElementById('select1').id = idselect;
+            var txtid = 'textEmp1' + cont1;
+            document.getElementById('textEmp1').id = txtid;
+            var idlbl = 'lblEmp1' + cont1;
+            document.getElementById('lblEmp1').id = idlbl;
+
+        });
+
+        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+            e.preventDefault();
+            $(this).parent().parent().remove();
+            x--;
+        })
+    });
+
+
+    $(document).ready(function () {
+        var max_fields = 10; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap2"); //Fields wrapper
+        var add_button = $(".add_field_button2"); //Add button ID
+        var cont = 2;
+        var idselect = ''
+        var x = 1; //initlal text box count
+        $(add_button).click(function (e) { //on add input button click
+            e.preventDefault();
+            if (x < max_fields) { //max input box allowed
+                x++; //text box increment
+
+
+                $(wrapper).append(
+                    '<div class="row"><div class="col-sm-3"><label>Machine Code:</label><select name="dropdown2" id="select2" onchange="changeLabel2()"> <option disabled selected value> -- select an option -- </option>{% for site in machine %}<option value="{{ site.1}}">{{ site.0 }}</option>{% endfor %}</select ></div><div class="col-sm-3"><label>Hrs.Used:</label><input type="number" name="mytext1" id="textEmp2" onkeyup="changeLabel2()" required value="0"/></div><div class="col-sm-2"><label>Total:</label><label id="lblEmp2">N/A</label></div><div class="col-sm-2"><a href="#" class="remove_field">Remove</a></div></div>'
+
+                ); //add input box
+            }
+            cont2++
+
+            var idselect = 'select2' + cont2;
+            document.getElementById('select2').id = idselect;
+            var txtid = 'textEmp2' + cont2;
+            document.getElementById('textEmp2').id = txtid;
+            var idlbl = 'lblEmp2' + cont2;
+            document.getElementById('lblEmp2').id = idlbl;
+        });
+
+        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+            e.preventDefault(); $(this).parent('div').remove(); x--;
+        })
+    });
+
+
+
+
+
+
+
+    function changeLabel1() {
+        var i;
+        var j = 1;
+        for (i = 0; i < cont1; i++) {
+            let lbl = document.getElementById('lblEmp1' + j);
+            let txt = document.getElementById('textEmp1' + j).value;
+            let empName = document.getElementById('select1' + j).value;
+            let val = txt * empName;
+            lbl.innerText = val;       // TREATS EVERY CONTENT AS TEXT.
+            j++;
+        }
+    }
+
+    function changeLabel2() {
+        var i;
+        var j = 1;
+        for (i = 0; i < cont2; i++) {
+            let lbl = document.getElementById('lblEmp2' + j);
+            let txt = document.getElementById('textEmp2' + j).value;
+            let empName = document.getElementById('select2' + j).value;
+            let val = txt * empName;
+            lbl.innerText = val;       // TREATS EVERY CONTENT AS TEXT.
+            j++;
+        }
+    }
+
+</script>
+{% endblock content %}
