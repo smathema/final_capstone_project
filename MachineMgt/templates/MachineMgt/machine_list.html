@@ -1,45 +1,58 @@
 {% extends "JobCode/index.html" %}
+
+
+{% block title %}
+  Machine Management
+{% endblock %}
+
+<!-- Machine Management content page -->
 {% block content %}
-<div class="row">
-  <div class="col-lg-2 col-md-2">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-light"><a href="{% url 'job-list' %}">Job Code Management</a></li>
-      <li class="list-group-item list-group-item-light"><a href="{% url 'machine-list' %}">Machine Management</a></li>
-      <li class="list-group-item list-group-item-light"><a href="#">Time Card approval</a></li>
-    </ul>
-  </div>
+
+<!-- Machine Management header -->
+<div>
+  <div class="p-3 mb-2 mt-3 bg-secondary text-white">Machine Management</div>
+</div>
+
+<!-- Machine Management table content -->
+<div class="row mt-5">
+
   <div class="col-lg-10 col-md-10">
+    <!-- "Add New" Hyperlink -->
     <div class="text-right">
-      <h3><a href="{% url 'machine-create'  %}"> Add New</a></h3>
+      <h5><a href="{% url 'machine-create'  %}"> Add New</a></h5>
     </div>
 
+    <!-- Table -->
     <table class="table  table-bordered table-hover">
-          <thead class="">
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Machine Code</th>
-              <th scope="col">Description</th>
-              <th scope="col">Hourly Rent</th>
-              <th scope="col">Max Hour Per Day</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for machine in machine_list%}
-            <tr>
-              <th scope="row"></th>
-              <td>{{ machine.machine_code }}</td>
-              <td>{{ machine.description }}</td>
-              <td>{{ machine.hourly_rent }}</td>
-              <td>{{ machine.max_hour_per_day }}</td>
-              <td><a href="{% url 'machine-update' machine.id %}">edit</a></td>
-              <td><a href="{% url 'machine-delete' machine.id %}">delete</a></td>
-            </tr>
-            {% endfor %}
+      <!-- Table Header -->
+      <thead class="p-3 mb-2 bg-dark text-white">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Machine Code</th>
+          <th scope="col">Description</th>
+          <th scope="col">Hourly Rent</th>
+          <th scope="col">Max Hour Per Day</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
 
-          </tbody>
-      </table>
+      <!-- Table data/body -->
+      <tbody>
+        {% for machine in machine_list%}
+          <tr>
+            <th scope="row"></th>
+            <td>{{ machine.machine_code }}</td>
+            <td>{{ machine.description }}</td>
+            <td>${{ machine.hourly_rent }}/Hr.</td>
+            <td>{{ machine.max_hour_per_day }} Hr.</td>
+            <td><a href="{% url 'machine-update' machine.id %}">edit</a></td>
+            <td><a href="{% url 'machine-delete' machine.id %}">delete</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
 
   </div>
 

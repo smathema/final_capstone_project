@@ -9,19 +9,22 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Disaster Recovery Labor</title>
+    <title>{% block title %}Disaster Recovery Labor{% endblock %}</title>
 
   </head>
 
   <body>
-    <header>
+
+    <!-- Header area -->
+    <header class="mt-3">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            <!-- Header Title -->
             <a class="navbar-brand" href="/">Disaster Recovery Application: Time Card Submission</a>
 
+            <!-- Username and Login status area -->
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 {% if user.is_authenticated %}
                     <ul class="navbar-nav ml-auto ">
@@ -50,28 +53,34 @@
                 {% endif %}
 
             </div>
+
         </nav>
     </header>
 
+    <!-- Content besides header -->
     <div class="container-fluid">
+
+        <!-- Sidebar and Content Page -->
         <div class="row">
 
+            <!-- Sidebar -->
             <div class="col-sm-2 mt-5">
                 {% if user.is_authenticated %}
                 {% if user.is_staff %}
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'job-list' %}">Job Code Management</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'job-list' %}">Job Code Management</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'machine-list' %}">Machine Management</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Time Card Approval</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'timesheet-list' %}">Time Card Approval</a></li>
                 </ul>
                 {% else %}
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="#">Time Card Submission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'timesheet-list' %}">Time Card Submission</a></li>
                 </ul>
                 {% endif %}
                 {% endif %}
             </div>
 
+            <!-- Content Page -->
             <div class="col-sm-10">
                 {% block content %}
                 {% endblock %}
