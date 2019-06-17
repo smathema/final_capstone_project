@@ -9,20 +9,20 @@ class JobListView(LoginRequiredMixin, ListView):
     model = Job
 
 
-class JobDetailView(DetailView):
+class JobDetailView(LoginRequiredMixin, DetailView):
     model = Job
 
 
-class JobCreateView(CreateView):
-    model = Job
-    fields = ['job_code', 'description', 'hourly_rate', 'max_hour_per_day']
-
-
-class JobUpdateView(UpdateView):
+class JobCreateView(LoginRequiredMixin, CreateView):
     model = Job
     fields = ['job_code', 'description', 'hourly_rate', 'max_hour_per_day']
 
 
-class JobDeleteView(DeleteView):
+class JobUpdateView(LoginRequiredMixin, UpdateView):
+    model = Job
+    fields = ['job_code', 'description', 'hourly_rate', 'max_hour_per_day']
+
+
+class JobDeleteView(LoginRequiredMixin, DeleteView):
     model = Job
     success_url = '/'

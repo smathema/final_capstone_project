@@ -4,9 +4,11 @@
   Job code Management
 {% endblock %}
 
+
+
 <!-- Job code content page -->
 {% block content %}
-
+{% if user.is_authenticated and user.is_staff %}
 <!-- Job code header -->
 <div>
   <div class="p-3 mb-2 mt-3 bg-secondary text-white">Job code Management</div>
@@ -58,4 +60,7 @@
 
 </div>
 
+{% endif %}
 {% endblock %}
+
+
