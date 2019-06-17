@@ -1,0 +1,71 @@
+{% extends "JobCode/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Create Timesheet
+{% endblock %}
+
+<!-- Timesheet create form content page -->
+{% block content %}
+<div class="content-section">
+
+    <!-- Form -->
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Header area -->
+        <div>
+            <div class="p-3 mb-2 mt-3 bg-secondary text-white">Timesheet Submission</div>
+        </div>
+
+        <!-- Form -->
+        <div class="ml">
+            {{form|crispy}}
+        </div>
+
+        <fieldset>
+            <legend>Labor Entry</legend>
+            Labor Code:
+            <select name="dropdown1">
+                {% for site in job %}
+                <option value="{{ site}}">{{ site }}</option>
+                {% endfor %}
+            </select>
+
+            select name="dropdown1">
+                {% for site in job %}
+                <option value="{{ site}}">{{ site }}</option>
+                {% endfor %}
+            </select>
+
+
+
+
+
+            <label for="male">{{ site }}</label>
+
+
+
+
+
+        </fieldset>
+        <fieldset>
+            <legend>Machine Entry</legend>
+            Machine Code:
+            <select name="dropdown1">
+                {% for site in machine %}
+                <option value="{{ site}}">{{ site }}</option>
+                {% endfor %}
+                
+            </select>
+        </fieldset>
+
+        <div class="form-group">
+
+            <button class="btn btn-outline-info" type="submit">Submit</button>
+
+        </div>
+    </form>
+
+</div>
+{% endblock content %}
