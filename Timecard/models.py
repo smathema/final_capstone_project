@@ -4,8 +4,8 @@ import datetime
 
 
 class Timesheet(models.Model):
-    site_code = models.CharField(max_length=250, unique=True)
-    contractor = models.CharField(max_length=250, blank=True)
+    site_code = models.CharField(max_length=20)
+    contractor = models.CharField(max_length=50)
     total_amount = models.DecimalField(max_digits=20, decimal_places=2)
     total_hrs = models.PositiveIntegerField()
     date = models.DateField(default=datetime.date.today)
@@ -16,4 +16,3 @@ class Timesheet(models.Model):
 
     def get_absolute_url(self):
         return reverse('timesheet-list')
-

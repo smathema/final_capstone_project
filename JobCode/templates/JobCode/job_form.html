@@ -2,33 +2,37 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-  Create/Update Job
+Create/Update Job
 {% endblock %}
 
 <!-- Job create/update form content page -->
 {% block content %}
-    <div class="content-section">
+{% if user.is_authenticated and user.is_staff %}
+
+<div class="content-section">
+
+    <!-- Form -->
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Header area -->
+        <div>
+            <div class="p-3 mb-2 mt-3 bg-secondary text-white">Create/Update Job</div>
+        </div>
 
         <!-- Form -->
-        <form method="POST">
-            {% csrf_token %}
-
-            <!-- Header area -->
-            <div>
-                <div class="p-3 mb-2 mt-3 bg-secondary text-white">Create/Update Job</div>
-            </div>
-
-            <!-- Form -->
-            <div class="ml">
-                {{form|crispy}}
-            </div>
+        <div class="row ml">
+            <div class="col-sm-6">{{form|crispy}}</div>
+        </div>
 
 
-            <!-- Submit button -->
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Submit</button>
-            </div>
-        </form>
+        <!-- Submit button -->
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Submit</button>
+        </div>
+    </form>
 
-    </div>
+</div>
+
+{% endif %}
 {% endblock content %}

@@ -1,7 +1,14 @@
-{% extends "JobCode/base.html" %}
+{% extends "JobCode/index.html" %}
 
+{% block title %}
+Timesheet Review
+{% endblock %}
+
+<!-- Timesheet Review content page -->
 {% block content %}
 <div class="content-section">
+
+    <!-- Form -->
     <form method="POST">
 
         {% csrf_token %}
@@ -10,12 +17,9 @@
 
         {{ form.as_p }}
 
-
-
+        <!-- Submit button -->
         <div class="form-group">
-
             <button class="btn btn-outline-info" type="submit">Submit</button>
-
         </div>
     </form>
 

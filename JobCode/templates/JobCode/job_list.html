@@ -1,62 +1,62 @@
 {% extends "JobCode/index.html" %}
 
 {% block title %}
-  Job code Management
+Job code Management
 {% endblock %}
-
 
 
 <!-- Job code content page -->
 {% block content %}
 {% if user.is_authenticated and user.is_staff %}
+
 <!-- Job code header -->
 <div>
-  <div class="p-3 mb-2 mt-3 bg-secondary text-white">Job code Management</div>
+    <div class="p-3 mb-2 mt-3 bg-secondary text-white">Job code Management</div>
 </div>
 
 <!-- Job code table content -->
 <div class="row mt-5">
 
-  <div class="col-lg-10 col-md-10">
-    <!-- "Add New" Hyperlink -->
-    <div class="text-right">
-      <h5><a href="{% url 'job-create'  %}"> Add New</a></h5>
+    <div class="col-lg-10 col-md-10">
+        <!-- "Add New" Hyperlink -->
+        <div class="text-right">
+            <h5><a href="{% url 'job-create' %}"> Add New</a></h5>
+        </div>
+
+        <!-- Table -->
+        <table class="table  table-bordered table-hover">
+
+            <!-- Table Header -->
+            <thead class="p-3 mb-2 bg-dark text-white">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Job Code</th>
+                <th scope="col">Description</th>
+                <th scope="col">Hourly Rate</th>
+                <th scope="col">Max Hour Per Day</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+
+            <!-- Table data/body -->
+            <tbody>
+            {% for job in job_list%}
+            <tr>
+                <th scope="row"></th>
+                <td>{{ job.job_code }}</td>
+                <td>{{ job.description }}</td>
+                <td>${{ job.hourly_rate }}/Hr.</td>
+                <td>{{ job.max_hour_per_day }} Hr.</td>
+                <td><a href="{% url 'job-update' job.id %}">edit</a></td>
+                <td><a href="{% url 'job-delete' job.id %}">delete</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
     </div>
-
-    <!-- Table -->
-    <table class="table  table-bordered table-hover">
-
-      <!-- Table Header -->
-      <thead class="p-3 mb-2 bg-dark text-white">
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">Job Code</th>
-          <th scope="col">Description</th>
-          <th scope="col">Hourly Rate</th>
-          <th scope="col">Max Hour Per Day</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-
-      <!-- Table data/body -->
-      <tbody>
-        {% for job in job_list%}
-          <tr>
-            <th scope="row"></th>
-            <td>{{ job.job_code }}</td>
-            <td>{{ job.description }}</td>
-            <td>${{ job.hourly_rate }}/Hr.</td>
-            <td>{{ job.max_hour_per_day }} Hr.</td>
-            <td><a href="{% url 'job-update' job.id %}">edit</a></td>
-            <td><a href="{% url 'job-delete' job.id %}">delete</a></td>
-          </tr>
-        {% endfor %}
-      </tbody>
-
-    </table>
-
-  </div>
 
 </div>
 

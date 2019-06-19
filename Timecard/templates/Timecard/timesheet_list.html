@@ -1,7 +1,7 @@
 {% extends "JobCode/index.html" %}
 
 {% block title %}
-  Timecard Approval
+Timecard Approval
 {% endblock %}
 
 <!-- Timecard content page -->
@@ -10,13 +10,13 @@
 {% if user.is_authenticated %}
 <!-- Timesheet approval header -->
 {% if user.is_staff %}
-<div>
-  <div class="p-3 mb-2 mt-3 bg-secondary text-white">Timesheet Approval</div>
-</div>
+    <div>
+        <div class="p-3 mb-2 mt-3 bg-secondary text-white">Timesheet Approval</div>
+    </div>
 {% else %}
-<div>
-  <div class="p-3 mb-2 mt-3 bg-secondary text-white">Timesheet Submission</div>
-</div>
+    <div>
+        <div class="p-3 mb-2 mt-3 bg-secondary text-white">Timesheet Submission</div>
+    </div>
 {% endif %}
 
 <!-- Timesheet table content -->
@@ -26,7 +26,9 @@
 
         <!-- "Add New" Hyperlink -->
         <div class="text-right">
-            <h5><a href="{% url 'timesheet-create'  %}">Enter new timesheet</a></h5>
+            {% if not user.is_staff %}
+            <h5><a href="{% url 'timesheet-create' %}">Enter new timesheet</a></h5>
+            {% endif %}
         </div>
 
         <!-- Table -->
@@ -34,35 +36,34 @@
 
             <!-- Table Header -->
             <thead class="p-3 mb-2 bg-dark text-white">
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Site Code</th>
-                    <th scope="col">Contractor Name</th>
-                    <th scope="col">Total Hrs</th>
-                    <th scope="col">Total Amaount</th>
-                    <th scope="col"></th>
-                </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Site Code</th>
+                <th scope="col">Contractor Name</th>
+                <th scope="col">Total Hrs</th>
+                <th scope="col">Total Amaount</th>
+                <th scope="col"></th>
+            </tr>
             </thead>
 
             <!-- Table data/body -->
             <tbody>
-                {% for site in timesheet_list%}
-                <tr>
-                    <th scope="row"></th>
-                    <td>{{ site.site_code }}</td>
-                    <td>{{ site.contractor }}</td>
-                    <td>{{ site.total_hrs }}</td>
-                    <td>{{ site.total_amount }}</td>
-                    {% if site.status is True %}
-                    <td>Finalized</td>
-                    {% else %}
-                    <td><a href="{% url 'timesheet-update' site.id %}">Review</a></td>
-                    {% endif %}
-
-
-
-                </tr>
-                {% endfor %}
+            {% for site in timesheet_list%}
+            <tr>
+                <th scope="row"></th>
+                <td>{{ site.site_code }}</td>
+                <td>{{ site.contractor }}</td>
+                <td>{{ site.total_hrs }}</td>
+                <td>{{ site.total_amount }}</td>
+                {% if site.status is True %}
+                <td>Finalized</td>
+                {% elif user.is_staff and site.status is False %}
+                <td><a href="{% url 'timesheet-update' site.id %}">Review</a></td>
+                {% else %}
+                <td>Open</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
 
             </tbody>
 

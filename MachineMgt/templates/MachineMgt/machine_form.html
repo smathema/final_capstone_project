@@ -7,6 +7,8 @@
 
 <!-- Machine create/update form content page -->
 {% block content %}
+{% if user.is_authenticated and user.is_staff %}
+
     <div class="content-section">
 
         <!-- Form -->
@@ -19,7 +21,12 @@
             </div>
 
             <!-- Form -->
-            {{form|crispy}}
+            <div class="row ml">
+                <div class="col-sm-6">
+                    {{form|crispy}}
+                </div>
+            </div>
+
 
             <!-- Submit button -->
             <div class="form-group">
@@ -28,4 +35,6 @@
         </form>
 
     </div>
+
+{% endif %}
 {% endblock content %}

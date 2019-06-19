@@ -7,6 +7,7 @@
 
 <!-- Machine Management content page -->
 {% block content %}
+{% if user.is_authenticated and user.is_staff %}
 
 <!-- Machine Management header -->
 <div>
@@ -58,4 +59,5 @@
 
 </div>
 
+{% endif %}
 {% endblock %}
