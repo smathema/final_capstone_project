@@ -261,7 +261,7 @@ var cont2 = 1;
 
                 $(wrapper).append('<div class="row"><div class="col-sm-3"><label>Labor Code:</label><select name="dropdown1" id="select1" onchange="changeLabel1()"><option disabled selected value> -- select an option -- </option>{% for site in job %}<option value="{{site.1}}">{{ site.0 }}</option>{% endfor %}</select></div><div class="col-sm-3"><label>Hrs.Worked:</label><input type="number" name="mytext1" id="textEmp1" onkeyup="changeLabel1()" required  value="0"/></div><div class="col-sm-2"><label>Total:</label><label id="lblEmp1">N/A</label></div><div class="col-sm-2"><a href="#" class="remove_field">Remove</a></div></div>');
             }
-            cont1++
+            cont1++;
 
             var idselect = 'select1' + cont1;
             document.getElementById('select1').id = idselect;
@@ -276,6 +276,7 @@ var cont2 = 1;
             e.preventDefault();
             $(this).parent().parent().remove();
             x--;
+            cont1--;
         })
     });
 
@@ -298,7 +299,7 @@ var cont2 = 1;
 
                 ); //add input box
             }
-            cont2++
+            cont2++;
 
             var idselect = 'select2' + cont2;
             document.getElementById('select2').id = idselect;
@@ -309,7 +310,10 @@ var cont2 = 1;
         });
 
         $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+            cont2--;
         })
     });
 
