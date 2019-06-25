@@ -1,0 +1,9 @@
+Package             Version    
+------------------- -----------
+Django              2.2.2      
+django-crispy-forms 1.7.2      
+mysqlclient         1.4.2.post1
+pip                 19.1.1     
+pytz                2019.1     
+setuptools          40.8.0     
+sqlparse            0.3.0      
