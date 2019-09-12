@@ -261,7 +261,11 @@ var cont2 = 1;
 
                 $(wrapper).append('<div class="row"><div class="col-sm-3"><label>Labor Code:</label><select name="dropdown1" id="select1" onchange="changeLabel1()"><option disabled selected value> -- select an option -- </option>{% for site in job %}<option value="{{site.1}}">{{ site.0 }}</option>{% endfor %}</select></div><div class="col-sm-3"><label>Hrs.Worked:</label><input type="number" name="mytext1" id="textEmp1" onkeyup="changeLabel1()" required  value="0"/></div><div class="col-sm-2"><label>Total:</label><label id="lblEmp1">N/A</label></div><div class="col-sm-2"><a href="#" class="remove_field">Remove</a></div></div>');
             }
+<<<<<<< HEAD
             cont1++
+=======
+            cont1++;
+>>>>>>> c24ed4e59a62edaea8e8f0910cc3355c26d86fb2
 
             var idselect = 'select1' + cont1;
             document.getElementById('select1').id = idselect;
@@ -276,6 +280,10 @@ var cont2 = 1;
             e.preventDefault();
             $(this).parent().parent().remove();
             x--;
+<<<<<<< HEAD
+=======
+            cont1--;
+>>>>>>> c24ed4e59a62edaea8e8f0910cc3355c26d86fb2
         })
     });
 
@@ -298,7 +306,11 @@ var cont2 = 1;
 
                 ); //add input box
             }
+<<<<<<< HEAD
             cont2++
+=======
+            cont2++;
+>>>>>>> c24ed4e59a62edaea8e8f0910cc3355c26d86fb2
 
             var idselect = 'select2' + cont2;
             document.getElementById('select2').id = idselect;
@@ -309,7 +321,14 @@ var cont2 = 1;
         });
 
         $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+<<<<<<< HEAD
             e.preventDefault(); $(this).parent('div').remove(); x--;
+=======
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+            cont2--;
+>>>>>>> c24ed4e59a62edaea8e8f0910cc3355c26d86fb2
         })
     });
 

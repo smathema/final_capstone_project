@@ -33,11 +33,21 @@ def get_name(request):
         hrs_list = [int(i) for i in mydict['mytext1']]
         hrs_sum = sum(hrs_list)
         droplist = []
+<<<<<<< HEAD
 
         for i in mydict['dropdown1']:
             droplist.append(float(i))
         for i in mydict['dropdown2']:
             droplist.append(float(i))
+=======
+        if mydict.get('dropdown1'):  # if labor code information are added
+            for i in mydict['dropdown1']:
+                droplist.append(float(i))
+
+        if mydict.get('dropdown2'):  # if machine code information are added
+            for i in mydict['dropdown2']:
+                droplist.append(float(i))
+>>>>>>> c24ed4e59a62edaea8e8f0910cc3355c26d86fb2
 
         total_list = [x * y for x, y in zip(hrs_list, droplist)]
         total_sum = sum(total_list)
@@ -50,7 +60,11 @@ def get_name(request):
         ts.total_amount = total_sum
         ts.save()
 
+<<<<<<< HEAD
     return redirect('/')
+=======
+    return redirect('/timecard')
+>>>>>>> c24ed4e59a62edaea8e8f0910cc3355c26d86fb2
 
 
 class TimesheetUpdateView(LoginRequiredMixin, UpdateView):

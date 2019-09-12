@@ -23,4 +23,4 @@ class MachineUpdateView(LoginRequiredMixin, UpdateView):
 
 class MachineDeleteView(LoginRequiredMixin, DeleteView):
     model = Machine
-    success_url = '/'
+    success_url = '/machinemgt'

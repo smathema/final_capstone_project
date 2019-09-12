@@ -133,4 +133,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = 'login'
+<<<<<<< HEAD
+=======
+
+>>>>>>> c24ed4e59a62edaea8e8f0910cc3355c26d86fb2
 LOGIN_REDIRECT_URL = '/'
